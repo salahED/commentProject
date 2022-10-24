@@ -1,6 +1,6 @@
 import { ormConfig } from "./ormConfig";
 import { DataSource } from "typeorm";
-console.log("ormConfig   ", ormConfig);
+
 let connected = false;
 export default async function dbConnection() {
   const AppDataSource = new DataSource(ormConfig);

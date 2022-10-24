@@ -19,9 +19,9 @@ export const ormConfig: ConnectionOptions = {
   port: 5433,
   synchronize: true,
   logging: true,
-  entities: ["server/**/*.entity.ts"],
-  migrations: ["server/migration/**/*.ts"],
-  subscribers: ["server/**/subscriber/**/*.ts"]
+  entities: ["**/**/*.entity.ts"],
+  migrations: ["**/migration/**/*.ts"],
+  subscribers: ["**/**/subscriber/**/*.ts"]
   // cli : {
   //   entitiesDir: "server/entity",
   //   migrationsDir: "server/migration",
