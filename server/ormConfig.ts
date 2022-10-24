@@ -1,4 +1,4 @@
-import { ConnectionOptions } from "typeorm";
+import { UserEntity } from "./user/user.entity";
 
 // You can load you .env file here synchronously using dotenv package (not installed here),
 // import * as dotenv from 'dotenv';
@@ -9,19 +9,19 @@ import { ConnectionOptions } from "typeorm";
 // ...
 
 // Check typeORM documentation for more information.
-export const ormConfig: ConnectionOptions = {
+export const ormConfig = {
   type: "postgres",
   schema: "public",
   host: "localhost",
   username: "postgres",
   password: "postgres",
   database: "commentdb",
-  port: 5433,
+  port: 5432,
   synchronize: true,
   logging: true,
-  entities: ["**/**/*.entity.ts"],
+  entities: [UserEntity],
   migrations: ["**/migration/**/*.ts"],
-  subscribers: ["**/**/subscriber/**/*.ts"]
+  subscribers: ["**/**/subscriber/**/*.ts"],
   // cli : {
   //   entitiesDir: "server/entity",
   //   migrationsDir: "server/migration",
