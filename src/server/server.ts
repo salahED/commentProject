@@ -2,7 +2,8 @@ import { ormConfig } from "./ormConfig";
 import { DataSource } from "typeorm";
 
 let connected = false;
-export default async function dbConnection() {
+export default function dbConnection() {
+  console.log("call db connection");
   const AppDataSource = new DataSource(ormConfig);
   if (connected) {
     console.log("reconnection to db ...");
