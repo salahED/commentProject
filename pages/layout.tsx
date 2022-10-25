@@ -1,7 +1,7 @@
 import { Layout } from "antd";
 import React from "react";
 import type { NextPage } from "next";
-import CreatePostComponent from "../components/createPostComponent";
+import CreatePostComponent from "../components/createNewPostComponent";
 import PostComponent from "../components/postComponent";
 
 const { Header, Footer, Sider, Content } = Layout;

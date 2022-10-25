@@ -5,13 +5,15 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToMany
+  OneToMany,
+  BaseEntity,
+  JoinColumn
 } from "typeorm";
-import { Comment } from "../comment/comment.entity";
-// import { User } from "../user/user.entity";
+import { CommentEntity } from "../comment/comment.entity";
+import { UserEntity } from "../user/user.entity";
 
 @Entity()
-export class Post {
+export class PostEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -34,15 +36,13 @@ export class Post {
   })
   public updatedAt: Date;
 
-  //   @ManyToOne(
-  //     () => User,
-  //     user => user.id
-  //   )
-  //   userPosts: User;
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: "user_entity", referencedColumnName: "id" })
+  userId: UserEntity;
 
   @OneToMany(
-    () => Comment,
-    comment => comment.postComments
+    () => CommentEntity,
+    comment => comment.postId
   )
-  comments: Comment[];
+  comments: CommentEntity[];
 }
