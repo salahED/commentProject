@@ -10,9 +10,7 @@ export class PostService {
   constructor() {}
   static getAllPosts = async () => {
     try {
-      //open db connection
       await dbConnection();
-      //Get users from database
       const postList = await PostEntity.find();
       return postList;
     } catch (error) {

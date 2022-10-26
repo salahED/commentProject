@@ -1,18 +1,18 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
+  BaseEntity,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   ManyToOne,
   OneToMany,
-  BaseEntity,
-  JoinColumn
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
+import type { Relation } from "typeorm";
 import { CommentEntity } from "../comment/comment.entity";
 import { UserEntity } from "../user/user.entity";
 
-@Entity()
+@Entity("posts")
 export class PostEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,24 +25,20 @@ export class PostEntity extends BaseEntity {
 
   @CreateDateColumn({
     type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)"
+    default: () => "CURRENT_TIMESTAMP(6)",
   })
   public createdAt: Date;
 
   @UpdateDateColumn({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)"
+    onUpdate: "CURRENT_TIMESTAMP(6)",
   })
   public updatedAt: Date;
 
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "user_entity", referencedColumnName: "id" })
-  userId: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.publishedPosts)
+  user: Relation<UserEntity>;
 
-  @OneToMany(
-    () => CommentEntity,
-    comment => comment.postId
-  )
-  comments: CommentEntity[];
+  @OneToMany(() => CommentEntity, (comment) => comment.post)
+  comments: Relation<CommentEntity[]>;
 }

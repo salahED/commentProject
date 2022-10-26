@@ -1,0 +1,18 @@
+POST http://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "sample",
+    "body": "nimporte quoi c un text",
+    "userId": 1
+}
+
+
+POST http://localhost:3000/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "lastName":"salah",
+    "firstName":"tebib",
+    "age": 12
+}
